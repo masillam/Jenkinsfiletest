@@ -21,6 +21,11 @@ pipeline {
                      zip zipFile: 'artifact_code.zip', archive: false, glob: '*.json,*.js'
                      archiveArtifacts artifacts: 'artifact_code.zip', fingerprint: true
                  }
+                 }
+                 stage('Docker build') {
+                 steps {
+                    sh "docker build -t nodejs_container ."
+                 }
                  } 
                  stage('Lint') {
                  steps {
@@ -37,11 +42,6 @@ pipeline {
                      sh 'istanbul cover ./test/*.js'
                  }
                  }   
-                 stage('Docker build') {
-                 steps {
-                    sh "docker build -t nodejs_container ."
-                 }
-                 }
                  stage('Three') {
                  when {
                        not {
