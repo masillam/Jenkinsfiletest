@@ -31,6 +31,12 @@ pipeline {
                      sh 'istanbul cover ./test/*.js'
                  }
                  }
+                 stage('create artifact') {
+                 steps {
+                    archiveArtifacts artifacts: 'app/dist/**',
+      onlyIfSuccessful: true
+                 }
+                 }                                 
                  stage('Two') {
                  steps {
                     input('Do you want to proceed?')
