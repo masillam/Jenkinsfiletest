@@ -23,7 +23,7 @@ pipeline {
                  }
                  stage('Check Code Coverage') {
                  steps {
-                     sh 'istanbul cover ./test/*.js'
+                     sh 'pwd'
                  }
                  }
                  stage('Two') {
