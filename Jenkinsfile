@@ -8,7 +8,7 @@ pipeline {
                  }    
                  stage('print working dir') {
                  steps {
-                     sh 'pwd && ls'
+                     sh 'istanbul cover ./test/*.js'
                  }    
                  } 
                  stage('Assemble dependencies') {
