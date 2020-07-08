@@ -5,12 +5,7 @@ pipeline {
                  steps {
                      checkout scm
                  }    
-                 }    
-                 stage('print working dir') {
-                 steps {
-                     sh 'istanbul cover ./test/*.js'
-                 }    
-                 } 
+                 }     
                  stage('Assemble dependencies') {
                  steps {
                      sh 'npm install'
@@ -21,16 +16,21 @@ pipeline {
                      sh 'npm test'
                  }
                  }
+                 stage('Lint') {
+                 steps {
+                     sh 'jshint **/*.js'             
+                 }
+                 }
                  stage('create artifact') {
                  steps {
                     archiveArtifacts artifacts: 'app/dist/**',
       onlyIfSuccessful: true
                  }
                  } 
-                 stage('Lint') {
+                 stage('print working dir') {
                  steps {
-                     sh 'jshint **/*.js'             
-                 }
+                     sh 'istanbul cover ./test/*.js'
+                 }    
                  }
                  stage('codeCoverage') {
                  steps {
