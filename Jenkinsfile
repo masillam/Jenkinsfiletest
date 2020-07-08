@@ -21,6 +21,11 @@ pipeline {
                      sh 'jshint **/*.js'             
                  }
                  }
+                 stage('Check Code Coverage') {
+                 steps {
+                     sh 'npm coverage'
+                 }
+                 }
                  stage('Two') {
                  steps {
                     input('Do you want to proceed?')
