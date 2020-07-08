@@ -6,9 +6,14 @@ pipeline {
                      checkout scm
                  }    
                  }       
-                 stage('Setup') {
+                 stage('Assemble dependencies') {
                  steps {
                      sh 'npm install'
+                 }
+                 }
+                 stage('Execute unit tests') {
+                 steps {
+                     sh 'npm test'
                  }
                  }
                  stage('Build and run code') {
