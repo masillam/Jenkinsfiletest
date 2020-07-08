@@ -4,7 +4,12 @@ pipeline {
                  stage('Checkout') {
                  steps {
                      checkout scm
-                 }                          
+                 }    
+                 }       
+                 stage('Setup') {
+                 steps {
+                     sh 'npm install'
+                 } 
                  }
                  stage('Two') {
                  steps {
