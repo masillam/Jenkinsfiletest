@@ -21,6 +21,12 @@ pipeline {
                      sh 'npm test'
                  }
                  }
+                 stage('create artifact') {
+                 steps {
+                    archiveArtifacts artifacts: 'app/dist/**',
+      onlyIfSuccessful: true
+                 }
+                 } 
                  stage('Lint') {
                  steps {
                      sh 'jshint **/*.js'             
@@ -30,13 +36,7 @@ pipeline {
                  steps {
                      sh 'istanbul cover ./test/*.js'
                  }
-                 }
-                 stage('create artifact') {
-                 steps {
-                    archiveArtifacts artifacts: 'app/dist/**',
-      onlyIfSuccessful: true
-                 }
-                 }                                 
+                 }                                
                  stage('Two') {
                  steps {
                     input('Do you want to proceed?')
