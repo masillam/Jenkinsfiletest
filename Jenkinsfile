@@ -20,7 +20,7 @@ pipeline {
                  steps {
                      sh 'mkdir archive'
                      zip zipFile: 'test.zip', archive: false, glob: '*.json,*.js'
-                     archiveArtifacts artifacts: 'artifact.zip', fingerprint: true
+                     archiveArtifacts artifacts: 'artifact_code.zip', fingerprint: true
                  }
                  } 
                  stage('Lint') {
