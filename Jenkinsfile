@@ -5,10 +5,6 @@ pipeline {
                  steps {
                      checkout scm
                  }                          
-                 stage('One') {
-                 steps {
-                     echo 'hi'
-                 }
                  }
                  stage('Two') {
                  steps {
