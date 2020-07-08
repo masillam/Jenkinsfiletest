@@ -13,7 +13,5 @@
   "scripts": {
     "run": "node app.js",
     "test": "mocha ./test/test.js"
-    "coverage": "istanbul cover ./test/*.js"
-
   }
 }
