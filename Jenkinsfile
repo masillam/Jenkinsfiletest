@@ -26,9 +26,9 @@ pipeline {
                      sh 'jshint **/*.js'             
                  }
                  }
-                 stage('Check code Coverage') {
+                 stage('codeCoverage') {
                  steps {
-                     sh 'pwd'
+                     sh 'istanbul cover ./test/*.js'
                  }
                  }
                  stage('Two') {
