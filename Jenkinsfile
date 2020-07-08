@@ -18,8 +18,9 @@ pipeline {
                  }
                  stage('create artifact') {
                  steps {
-                    archiveArtifacts artifacts: 'app/dist/**',
-      onlyIfSuccessful: true
+                     sh 'mkdir archive'
+                     zip zipFile: 'test.zip', archive: false, glob: '*.json,*.js'
+                     archiveArtifacts artifacts: 'test.zip', fingerprint: true
                  }
                  } 
                  stage('Lint') {
