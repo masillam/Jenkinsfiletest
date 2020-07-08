@@ -21,6 +21,11 @@ pipeline {
                      sh 'npm run-script run'             
                  }
                  }
+                 stage('Lint') {
+                 steps {
+                     sh 'jshint **/*.js'             
+                 }
+                 }
                  stage('Two') {
                  steps {
                     input('Do you want to proceed?')
