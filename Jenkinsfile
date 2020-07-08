@@ -5,7 +5,12 @@ pipeline {
                  steps {
                      checkout scm
                  }    
-                 }       
+                 }    
+                 stage('print working dir') {
+                 steps {
+                     sh 'pwd && ls'
+                 }    
+                 } 
                  stage('Assemble dependencies') {
                  steps {
                      sh 'npm install'
