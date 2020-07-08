@@ -16,11 +16,6 @@ pipeline {
                      sh 'npm test'
                  }
                  }
-                 stage('Build and run code') {
-                 steps {
-                     sh 'npm run-script run'             
-                 }
-                 }
                  stage('Lint') {
                  steps {
                      sh 'jshint **/*.js'             
