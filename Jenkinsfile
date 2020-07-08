@@ -21,7 +21,7 @@ pipeline {
                      sh 'jshint **/*.js'             
                  }
                  }
-                 stage('Check Code Coverage') {
+                 stage('Check code Coverage') {
                  steps {
                      sh 'pwd'
                  }
