@@ -16,17 +16,17 @@ pipeline {
                      sh 'npm test'
                  }
                  }
-                 stage('Lint') {
-                 steps {
-                     sh 'jshint **/*.js'             
-                 }
-                 }
                  stage('create artifact') {
                  steps {
                     archiveArtifacts artifacts: 'app/dist/**',
       onlyIfSuccessful: true
                  }
                  } 
+                 stage('Lint') {
+                 steps {
+                     sh 'jshint **/*.js'             
+                 }
+                 }
                  stage('print working dir') {
                  steps {
                      sh 'istanbul cover ./test/*.js'
