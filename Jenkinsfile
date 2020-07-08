@@ -18,8 +18,7 @@ pipeline {
                  }
                  stage('create artifact') {
                  steps {
-                     sh 'mkdir archive'
-                     zip zipFile: 'test.zip', archive: false, glob: '*.json,*.js'
+                     zip zipFile: 'artifact_code.zip', archive: false, glob: '*.json,*.js'
                      archiveArtifacts artifacts: 'artifact_code.zip', fingerprint: true
                  }
                  } 
