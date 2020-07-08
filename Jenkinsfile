@@ -37,10 +37,10 @@ pipeline {
                  steps {
                      sh 'istanbul cover ./test/*.js'
                  }
-                 }                                
-                 stage('Two') {
+                 }   
+                 stage('Docker build') {
                  steps {
-                    input('Do you want to proceed?')
+                    sh "docker build -t nodejs_container ."
                  }
                  }
                  stage('Three') {
