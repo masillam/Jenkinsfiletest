@@ -43,35 +43,6 @@ pipeline {
                      sh 'istanbul cover ./test/*.js'
                  }
                  }   
-                 stage('Three') {
-                 when {
-                       not {
-                            branch "master"
-                       }
-                 }
-                 steps {
-                       echo "Hello"
-                 }
-                 }
-                 stage('Four') {
-                 parallel { 
-                            stage('Unit Test') {
-                           steps {
-                                echo "Running the unittest..."
-                           }
-                           }
-                            stage('Integration test') {
-                              agent {
-                                    docker {
-                                            reuseNode true
-                                            image 'ubuntu'
-                                           }
-                                    }
-                              steps {
-                                echo "Running the integration test..."
-                              }
-                           }
-                           }
-                           }
+      
               }
 }
