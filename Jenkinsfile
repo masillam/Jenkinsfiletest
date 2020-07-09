@@ -33,11 +33,6 @@ pipeline {
                      sh 'jshint **/*.js'             
                  }
                  }
-                 stage('print working dir') {
-                 steps {
-                     sh 'istanbul cover ./test/*.js'
-                 }    
-                 }
                  stage('codeCoverage') {
                  steps {
                      sh 'istanbul cover ./test/*.js'
