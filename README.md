@@ -33,21 +33,22 @@ pipeline {
                      sh 'npm test'
                  }
                  }
-                 stage('create artifact') {
+                 stage('Linting') {
                  steps {
+                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE')
+                     {
+                          sh 'jshint **/*.js' 
+                     }
+                }
+                }  
+                 stage('Create Artifact') {
+                 steps {
+                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE')
+                     {
                      sh 'rm -f artifact_code.zip'
                      zip zipFile: 'artifact_code.zip', archive: false, glob: '*.json,*.js'
-                     archiveArtifacts artifacts: 'artifact_code.zip', fingerprint: true
-                 }
-                 }
-                 stage('Docker build') {
-                 steps {
-                    sh "docker build -t nodejs_container ."
-                 }
-                 } 
-                 stage('Lint') {
-                 steps {
-                     sh 'jshint **/*.js'             
+                     archiveArtifacts artifacts: 'artifact_code.zip'
+                     }
                  }
                  }
                  stage('codeCoverage') {
@@ -55,6 +56,11 @@ pipeline {
                      sh 'istanbul cover ./test/*.js'
                  }
                  }   
+                 stage('Docker build') {
+                 steps {
+                    sh "docker build -t nodejs_container ."
+                 }
+                 } 
       
               }
 }
