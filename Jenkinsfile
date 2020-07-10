@@ -23,11 +23,6 @@ pipeline {
                      archiveArtifacts artifacts: 'artifact_code.zip', fingerprint: true
                  }
                  }
-                 stage('Docker build') {
-                 steps {
-                    sh "docker build -t nodejs_container ."
-                 }
-                 } 
                  stage('Lint') {
                  steps {
                      sh 'jshint **/*.js'             
@@ -38,6 +33,11 @@ pipeline {
                      sh 'istanbul cover ./test/*.js'
                  }
                  }   
+                 stage('Docker build') {
+                 steps {
+                    sh "docker build -t nodejs_container ."
+                 }
+                 } 
       
               }
 }
