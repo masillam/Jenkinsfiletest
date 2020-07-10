@@ -36,7 +36,10 @@ pipeline {
                  }
                  stage('codeCoverage') {
                  steps {
+                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE')
+                     {
                      sh 'istanbul cover ./test/*.js'
+                     }
                  }
                  }   
                  stage('Docker build') {
