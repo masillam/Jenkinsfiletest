@@ -26,9 +26,12 @@ pipeline {
                 }  
                  stage('Create Artifact') {
                  steps {
+                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE')
+                     {
                      sh 'rm -f artifact_code.zip'
                      zip zipFile: 'artifact_code.zip', archive: false, glob: '*.json,*.js'
                      archiveArtifacts artifacts: 'artifact_code.zip', fingerprint: trueomeCodeThatCanBeErrored
+                     }
                  }
                  }
                  stage('codeCoverage') {
