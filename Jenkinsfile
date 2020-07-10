@@ -16,19 +16,19 @@ pipeline {
                      sh 'npm test'
                  }
                  }
-                 stage('create artifact') {
+                 stage('Linting') {
                  steps {
                      catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE')
                      {
-                          sh 'rm -f artifact_code.zip'
-                          zip zipFile: 'artifact_code.zip', archive: false, glob: '*.json,*.js'
-                          archiveArtifacts artifacts: 'artifact_code.zip', fingerprint: trueomeCodeThatCanBeErrored
+                          sh 'jshint **/*.js' 
                      }
                 }
                 }  
-                 stage('Lint') {
+                 stage('Create Artifact') {
                  steps {
-                     sh 'jshint **/*.js'             
+                     sh 'rm -f artifact_code.zip'
+                     zip zipFile: 'artifact_code.zip', archive: false, glob: '*.json,*.js'
+                     archiveArtifacts artifacts: 'artifact_code.zip', fingerprint: trueomeCodeThatCanBeErrored
                  }
                  }
                  stage('codeCoverage') {
