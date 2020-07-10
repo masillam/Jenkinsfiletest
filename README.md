@@ -62,5 +62,5 @@ pipeline {
 
 The `master` branch build produces the below output:
 
-![image](https://github.com/masillam/Problem_1/blob/master/Jenkins.png)
+![image](https://github.com/masillam/Problem_1/blob/master/Jenkins1.png)
 
