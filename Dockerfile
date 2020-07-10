@@ -11,7 +11,7 @@ COPY *.js ~/jenkins/deployment
 
 RUN npm install
 
-RUN unzip -d ~/jenkins/deployment ${filepath}/artifact_code.zip
+#RUN unzip -d ~/jenkins/deployment ${filepath}/artifact_code.zip
 
 EXPOSE 8080
 
